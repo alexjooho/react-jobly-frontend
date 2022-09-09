@@ -1,5 +1,5 @@
-import {useParams} from 'react-router-dom'
-import {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react';
 import JoblyApi from './api';
 import JobCardList from "./JobCardList";
 
@@ -30,15 +30,18 @@ function CompanyDetails() {
     }, []);
     // UseEffect has a missing dependency: but it works! =p
 
-    if(company.isLoading) {
-        return <div>Loading...</div>
+    if (company.isLoading) {
+        return (
+            <div className="spinner-border" style={{ width: "10rem", height: "10rem" }} role="status">
+            </div>
+        )
     }
 
     return (
         <div className="CompanyDetails col-md-8 offset-md-2">
-        <h1>{company.data.name}</h1>
-        <h2>{company.data.description}</h2>
-        <JobCardList jobs={company.data.jobs} />
+            <h1>{company.data.name}</h1>
+            <h2>{company.data.description}</h2>
+            <JobCardList jobs={company.data.jobs} />
         </div>
     )
 }

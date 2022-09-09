@@ -75,14 +75,13 @@ class JoblyApi {
     let res = await this.request(`auth/token`, formData, "post")
 
     return res.token;
-
+    // before I tried to throw new error, but remember that the backend already throws you an error
+    // if incorrect data!
   }
 
   /** Register user and get token */
   static async signup(formData) {
     let res = await this.request(`auth/register`, formData, "post")
-
-    console.log('formdata', formData)
 
     return res.token;
     

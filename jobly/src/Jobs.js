@@ -9,16 +9,18 @@ import JoblyApi from './api';
  *  {data: [job, job...],
  *   isLoading: true/false}
  */
- function Jobs() {
+function Jobs() {
     const [jobs, setJobs] = useState({
         data: [],
         isLoading: true,
     })
 
     /** calls API to fetch jobs based on optional filter */
-    async function getJobs(filter='') {
-        setJobs({data: await JoblyApi.getJobs(filter),
-        isLoading: false})
+    async function getJobs(filter = '') {
+        setJobs({
+            data: await JoblyApi.getJobs(filter),
+            isLoading: false
+        })
     }
 
     /** Calls api to get jobs when page is first mounted */
@@ -27,14 +29,17 @@ import JoblyApi from './api';
 
     }, []);
 
-    if(jobs.isLoading) {
-        return <div>Loading...</div>
+    if (jobs.isLoading) {
+        return (
+            <div className="spinner-border" style={{ width: "10rem", height: "10rem" }} role="status">
+            </div>
+        )
     }
 
     return (
         <div className="JobList col-md-8 offset-md-2">
-            <SearchForm search={getJobs}/>
-            <br/>
+            <SearchForm search={getJobs} />
+            <br />
             <JobCardList jobs={jobs.data} />
         </div>
     )

@@ -18,9 +18,11 @@ function Companies() {
     })
 
     /** calls API to fetch companies based on optional filter */
-    async function getCompanies(filter='') {
-        setCompanies({data: await JoblyApi.getCompanies(filter),
-        isLoading: false})
+    async function getCompanies(filter = '') {
+        setCompanies({
+            data: await JoblyApi.getCompanies(filter),
+            isLoading: false
+        })
     }
 
     // technically, whenever a search is made, the companies are loading but the isLoading stays
@@ -32,14 +34,17 @@ function Companies() {
 
     }, []);
 
-    if(companies.isLoading) {
-        return <div>Loading...</div>
+    if (companies.isLoading) {
+        return (
+            <div className="spinner-border" style={{ width: "10rem", height: "10rem" }} role="status">
+            </div>
+        )
     }
 
     return (
         <div className="CompanyList col-md-8 offset-md-2">
-            <SearchForm search={getCompanies}/>
-            <br/>
+            <SearchForm search={getCompanies} />
+            <br />
             <CompanyCardList companies={companies.data} />
         </div>
     )
