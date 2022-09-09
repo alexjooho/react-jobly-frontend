@@ -29,6 +29,7 @@ function CompanyDetails() {
         getCompany();
     }, []);
     // UseEffect has a missing dependency: but it works! =p
+    // just ignore this, it just does this warning
 
     if (company.isLoading) {
         return (

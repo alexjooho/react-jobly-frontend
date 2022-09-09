@@ -26,6 +26,7 @@ function RoutesList({ login, signup, updateProfile }) {
       </div>
     )
   }
+  // TODO: could put this logic in the app (if is loading) so that we don't need to do it here
 
   if (userData) {
     validRoutes = (
@@ -51,7 +52,9 @@ function RoutesList({ login, signup, updateProfile }) {
     )
   }
   // is there a way to put multiple paths for a single route?
-  // {["/home", "/users", "/widgets"]} not working
+  // path = {["/companies", "/companies/:handle", "/jobs", "/profile"]} not working
+  // THIS WAS TAKEN OUT IN V6, instead, you could just map over an array of the paths you want
+  // but this is a hassle for such a low number of routes
 
   return (
     <Routes>
